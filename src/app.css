@@ -46,11 +46,17 @@ body {
   text-align: center;
   max-width: 1280px;
 }
+
 @media (max-width: 640px) {
   body {
-    place-items: start;
+    align-items: start;
+    justify-content: center;
   }
   #app {
     margin-top: 1rem;
+  }
+  .main-wrapper {
+    align-items: start;
+    justify-content: center;
   }
 }
