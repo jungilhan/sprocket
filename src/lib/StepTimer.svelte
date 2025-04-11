@@ -174,7 +174,7 @@
   }
 
   /* For mobile version */
-  @media (max-width: 640px) {
+  @media (max-width: 767px) {
     .step-tooltip {
       /* Position tooltip below buttons */
       top: 100%; /* Place it below the card */
