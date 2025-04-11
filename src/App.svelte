@@ -135,7 +135,7 @@
   {#if showSettings}
     <div
       use:clickOutside={() => closeSettings()}
-      class="relative z-50 max-w-md mx-auto space-y-4 p-4 rounded-xl"
+      class="relative z-50 max-w-md mx-auto space-y-4 rounded-xl"
     >
       <div class="flex justify-end">
         <GlassButton
@@ -167,7 +167,7 @@
       </GlassButton>
     </div>
 
-    <div class="backdrop-blur-md bg-white/10 border border-white/20 shadow-2xl rounded-3xl p-8">
+    <div class="backdrop-blur-md bg-white/10 border border-white/20 shadow-2xl rounded-3xl p-4">
       <StepTimer
         bind:this={timerRef}
         steps={adjustedSteps}

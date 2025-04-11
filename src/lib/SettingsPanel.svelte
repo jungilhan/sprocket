@@ -75,7 +75,7 @@
 </script>
 
 
-<div class="backdrop-blur-md border-white/20 bg-white/10 border p-6 rounded-3xl shadow-2xl space-y-4 max-w-md mx-auto">
+<div class="backdrop-blur-md border-white/20 bg-white/10 border px-4 py-6 p-6 md:p-6 rounded-3xl shadow-2xl space-y-4 max-w-md mx-auto">
   <!-- 2% Rule Section -->
   <div class="space-y-4 px-4">
     <h2 class="text-lg font-semibold text-white text-center">Weakened Developer Solution</h2>
@@ -151,13 +151,13 @@
   <!-- Step Settings -->
   <h2 class="text-lg font-semibold text-white">Step Settings</h2>
 
-  <div class="space-y-4">
+  <div class="space-y-3">
     {#each steps as step, i}
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-3">
         <input
           type="text"
           bind:value={step.name}
-          class="bg-white/10 text-white border border-white/20 rounded px-2 py-1 text-sm w-24"
+          class="bg-white/10 text-white border border-white/20 rounded px-2 py-1 text-sm w-22"
           on:input={(e) => updateStep(i, 'name', e.currentTarget.value)}
         />
         <input
@@ -170,7 +170,7 @@
         <input
           type="text"
           bind:value={step.description}
-          class="bg-white/10 text-white border border-white/20 rounded px-2 py-1 text-sm w-32"
+          class="bg-white/10 text-white border border-white/20 rounded px-2 py-1 text-sm w-30"
           on:input={(e) => updateStep(i, 'description', e.currentTarget.value)}
         />
 
@@ -186,12 +186,12 @@
     {/each}
   </div>
 
-  <div class="flex justify-center gap-4">
+  <div class="flex justify-center gap-3">
     <button
       class="rounded px-4 py-2 text-white bg-white/10 border border-white/20 hover:bg-white/20 transition-colors text-sm"
       on:click={addStep}
     >
-      + Add Step
+      Add Step
     </button>
 
     <button
