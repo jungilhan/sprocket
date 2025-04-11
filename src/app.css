@@ -46,9 +46,11 @@ body {
   text-align: center;
   max-width: 1280px;
 }
-
-@media (max-width: 767px) {
+@media (max-width: 640px) {
+  body {
+    place-items: start;
+  }
   #app {
-    margin-top: -5rem;
+    margin-top: 1rem;
   }
 }
