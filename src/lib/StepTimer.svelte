@@ -133,7 +133,7 @@
         <stop offset="100%" stop-color="#ffc8a2" />
       </linearGradient>
 
-      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <filter id="glow" x="-50%" y="-50%" width="300%" height="300%">
         <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
         <feMerge>
           <feMergeNode in="blur" />

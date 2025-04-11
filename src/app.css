@@ -22,10 +22,9 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  /* background: linear-gradient(45deg, #3b3054, #915c83, #ffc3a0); */
-  background: linear-gradient(45deg, #191923, #222831, #4a148c);
+  background: linear-gradient(45deg, #091C45, #915c83, #ffc3a0);
   background-size: 400% 400%; /* Make the background large enough for smooth animation */
-  animation: gradientBackground 10s ease infinite; /* Apply animation */
+  animation: gradientBackground 15s ease-in infinite; 
 }
 
 @keyframes gradientBackground {
