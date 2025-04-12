@@ -181,37 +181,38 @@
         on:updateKeepScreenOn={handleKeepScreenOn}
       />
     </div>
-  {:else}
-    <div class="flex justify-end mb-4">
-      <GlassButton
-        on:click={() => (showSettings = true)}
-        class="w-10 h-10 p-0 flex items-center justify-center"
-      >
-        <Settings class="w-5 h-5 text-white" />
-      </GlassButton>
-    </div>
-
-    <div class="backdrop-blur-md bg-white/10 border border-white/20 shadow-2xl rounded-3xl p-4">
-      <StepTimer
-        bind:this={timerRef}
-        steps={adjustedSteps}
-        {currentStep}
-        size={timerSize}
-        bind:isRunning
-        on:prevrequest={handlePrevRequest}
-        on:nextrequest={handleNextRequest}
-      />
-    </div>
-
-    <div class="flex justify-center gap-4 mt-8">
-      <GlassButton text="Prev" on:click={() => timerRef?.prevStep()} disabled={currentStep === 0 && !isRunning} />
-      <GlassButton text={isRunning ? 'Pause' : "Start"} 
-        on:click={() => {
-        enableNoSleep(keepScreenOn)
-        toggleRun()
-        }
-      }/>
-      <GlassButton text="Next" on:click={next} disabled={currentStep === steps.length - 1} />
-    </div>
+  {:else}    
   {/if}
+  
+  <div class="flex justify-end mb-4" style="display: {showSettings ? 'none' : ''};">
+    <GlassButton
+      on:click={() => (showSettings = true)}
+      class="w-10 h-10 p-0 flex items-center justify-center"
+    >
+      <Settings class="w-5 h-5 text-white" />
+    </GlassButton>
+  </div>
+
+  <div class="backdrop-blur-md bg-white/10 border border-white/20 shadow-2xl rounded-3xl p-4" style="display: {showSettings ? 'none' : 'block'};">
+    <StepTimer
+      bind:this={timerRef}
+      steps={adjustedSteps}
+      {currentStep}
+      size={timerSize}
+      bind:isRunning
+      on:prevrequest={handlePrevRequest}
+      on:nextrequest={handleNextRequest}
+    />
+  </div>
+
+  <div class="flex justify-center gap-4 mt-8" style="display: {showSettings ? 'none' : ''};">
+    <GlassButton text="Prev" on:click={() => timerRef?.prevStep()} disabled={currentStep === 0 && !isRunning} />
+    <GlassButton text={isRunning ? 'Pause' : "Start"} 
+      on:click={() => {
+      enableNoSleep(keepScreenOn)
+      toggleRun()
+      }
+    }/>
+    <GlassButton text="Next" on:click={next} disabled={currentStep === steps.length - 1} />
+  </div>
 </main>
