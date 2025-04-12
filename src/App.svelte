@@ -180,8 +180,7 @@
         on:updateVolume={handleUpdateVolume}
         on:updateKeepScreenOn={handleKeepScreenOn}
       />
-    </div>
-  {:else}    
+    </div>    
   {/if}
   
   <div class="flex justify-end mb-4" style="display: {showSettings ? 'none' : ''};">
