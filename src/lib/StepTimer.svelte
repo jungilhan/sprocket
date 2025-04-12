@@ -154,7 +154,7 @@
 <style>
   .step-tooltip {
     position: absolute;
-    top: -32px; /* Align tooltip to the top of the card */
+    top: -18px; /* Align tooltip to the top of the card */
     left: 100%;
     transform: translateX(48px); /* Position to the right of the card */
     background-color: rgba(255, 255, 255, 0.1);
