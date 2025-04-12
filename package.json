@@ -16,15 +16,16 @@
     "@tsconfig/svelte": "^5.0.4",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.3",
+    "prettier": "^3.2.4",
     "svelte": "^5.20.2",
     "svelte-check": "^4.1.4",
     "tailwindcss": "^4.0.0",
     "typescript": "~5.7.2",
-    "vite": "^6.2.0",
-    "prettier": "^3.2.4"
+    "vite": "^6.2.0"
   },
   "dependencies": {
     "daisyui": "^5.0.17",
-    "lucide-svelte": "^0.487.0"
+    "lucide-svelte": "^0.487.0",
+    "nosleep.js": "^0.12.0"
   }
 }

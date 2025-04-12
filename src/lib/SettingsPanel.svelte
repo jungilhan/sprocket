@@ -1,12 +1,16 @@
 <script lang="ts">
   import { clickOutside } from './clickOutside';
-  import { createEventDispatcher, onMount } from 'svelte';
+  import { createEventDispatcher } from 'svelte';
+  import NoSleep from 'nosleep.js';
 
+  export let wakeLockSupported: boolean = false;
   export let steps: { name: string; duration: number; description: string }[] = [];
   export let applyTwoPercentRule: boolean = false;
   export let rollNumber: number = 1;
   export let solutionVolume: '500' | '1000' = '1000';
+  export let keepScreenOn: boolean = true;
 
+  let nosleep = new NoSleep();
   const dispatch = createEventDispatcher();
 
   function addStep() {
@@ -69,6 +73,15 @@
     ];
     saveSteps();
   }
+
+  function enableNoSleep(newKeepScreenOn:boolean) {
+    if (newKeepScreenOn) {
+      nosleep.enable();
+    } else {
+      nosleep.disable()
+    }
+  }
+
   $: dispatch('updateRule', { applyTwoPercentRule });
   $: dispatch('updateRoll', { rollNumber });
   $: dispatch('updateVolume', { solutionVolume });
@@ -146,6 +159,30 @@
         }}
       />
     </div>
+  </div>
+
+   <!-- Keep Screen On Section -->
+   <div class="space-y-4 px-4">
+    <h2 class="text-lg font-semibold text-white text-center">Display Settings</h2>
+
+    <!-- Keep Screen On Toggle -->
+    <div class="flex items-center justify-between">
+      <label for="keepScreenOn" class="text-white text-sm">Keep Screen On</label>
+      <input
+        id="keepScreenOn"
+        type="checkbox"
+        bind:checked={keepScreenOn}
+        on:click={() => {
+          keepScreenOn = !keepScreenOn;
+          enableNoSleep(keepScreenOn);
+        }}
+        class="toggle bg-transparent checked:bg-transparent w-10 h-5"
+        on:change={() => dispatch('updateKeepScreenOn', { keepScreenOn })}
+      />
+    </div>
+    {#if wakeLockSupported}
+      <p class="text-white text-center text-xs opacity-70">Wake Lock supported</p>
+    {/if}
   </div>
 
   <!-- Step Settings -->

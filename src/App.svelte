@@ -4,6 +4,7 @@
   import SettingsPanel from './lib/SettingsPanel.svelte';
   import { clickOutside } from './lib/clickOutside';
   import { Settings, X } from 'lucide-svelte';
+  import NoSleep from 'nosleep.js';
   import { onMount } from 'svelte';
 
   const defaultSteps = [
@@ -22,7 +23,8 @@
   let applyTwoPercentRule: boolean = false;
   let rollNumber: number = 1;
   let solutionVolume: '500' | '1000' = '1000';
-
+  let keepScreenOn: boolean = true;
+  let nosleep: NoSleep = new NoSleep();
   let timerSize: number;
 
   // Dynamic size based on window size
@@ -69,6 +71,12 @@
     if (savedSolutionVolume !== null) {
         solutionVolume = JSON.parse(savedSolutionVolume);
     }
+    const savedKeepScreenOn = localStorage.getItem('film-timer-keepScreenOn');
+    if (savedKeepScreenOn !== null) {
+        keepScreenOn = JSON.parse(savedKeepScreenOn);
+    } else {
+      keepScreenOn = true;
+    }    
   });
   
   function saveToLocalStorage() {
@@ -76,6 +84,7 @@
     localStorage.setItem('film-timer-applyTwoPercentRule', JSON.stringify(applyTwoPercentRule));
     localStorage.setItem('film-timer-rollNumber', JSON.stringify(rollNumber));
     localStorage.setItem('film-timer-solutionVolume', JSON.stringify(solutionVolume));
+    localStorage.setItem('film-timer-keepScreenOn', JSON.stringify(keepScreenOn));
     console.log("saved to local storage")
   }
 
@@ -87,7 +96,7 @@
   }
 
   function toggleRun() {
-    isRunning = !isRunning;
+    isRunning = !isRunning;    
   }
 
   function handlePrevRequest() {
@@ -125,9 +134,22 @@
     solutionVolume = e.detail.solutionVolume;
     saveToLocalStorage();
   }
+  
+  function handleKeepScreenOn(e: CustomEvent) {
+    keepScreenOn = e.detail.keepScreenOn;  
+    localStorage.setItem('film-timer-keepScreenOn', JSON.stringify(keepScreenOn));    
+  }
 
   function closeSettings() {
-    showSettings = false;
+    showSettings = false;      
+  }
+
+  function enableNoSleep(newKeepScreenOn: boolean) {
+    if (newKeepScreenOn) {
+        nosleep.enable();
+    } else {
+        nosleep.disable();
+    }
   }
 </script>
 
@@ -150,11 +172,13 @@
         {steps}
         {applyTwoPercentRule}
         {rollNumber}
-        {solutionVolume}
+        {solutionVolume}        
+        {keepScreenOn}
         on:update={handleSettingsUpdate}
         on:updateRule={handleUpdateRule}
         on:updateRoll={handleUpdateRoll}
         on:updateVolume={handleUpdateVolume}
+        on:updateKeepScreenOn={handleKeepScreenOn}
       />
     </div>
   {:else}
@@ -181,7 +205,12 @@
 
     <div class="flex justify-center gap-4 mt-8">
       <GlassButton text="Prev" on:click={() => timerRef?.prevStep()} disabled={currentStep === 0 && !isRunning} />
-      <GlassButton text={isRunning ? 'Pause' : "Start"} on:click={toggleRun}/>
+      <GlassButton text={isRunning ? 'Pause' : "Start"} 
+        on:click={() => {
+        enableNoSleep(keepScreenOn)
+        toggleRun()
+        }
+      }/>
       <GlassButton text="Next" on:click={next} disabled={currentStep === steps.length - 1} />
     </div>
   {/if}
