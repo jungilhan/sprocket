@@ -193,7 +193,7 @@
     </GlassButton>
   </div>
 
-  <div class="backdrop-blur-md bg-white/10 border border-white/20 shadow-2xl rounded-3xl p-4" style="display: {showSettings ? 'none' : 'block'};">
+  <div class="backdrop-blur-md bg-white/10 border border-white/20 shadow-2xl rounded-3xl p-10" style="display: {showSettings ? 'none' : 'block'};">
     <StepTimer
       bind:this={timerRef}
       steps={adjustedSteps}

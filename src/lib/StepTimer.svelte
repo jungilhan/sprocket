@@ -73,7 +73,7 @@
   $: offset = circumference * (1 - progressRatio);
 </script>
 
-<div class="relative mx-auto mb-8 transition-transform duration-500 ease-in-out" style="width: {size}px; height: {size}px;">
+<div class="relative mx-auto transition-transform duration-500 ease-in-out" style="width: {size}px; height: {size}px;">
   <!-- Timer Circle -->
   <svg width={size} height={size}>
     <circle cx={cx} cy={cy} r={radius} stroke="rgba(255,255,255,0.1)" stroke-width={stroke} fill="none" />

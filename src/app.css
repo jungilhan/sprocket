@@ -58,3 +58,7 @@ body {
     justify-content: center;
   }
 }
+
+.toggle {
+  --input-color: white;
+}
