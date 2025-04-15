@@ -3,6 +3,7 @@
   import GlassButton from './lib/GlassButton.svelte';
   import SettingsPanel from './lib/SettingsPanel.svelte';
   import { clickOutside } from './lib/clickOutside';
+  import { isMobileDevice } from './lib/types';
   import { Settings, X } from 'lucide-svelte';
   import NoSleep from 'nosleep.js';
   import { onMount } from 'svelte';
@@ -75,7 +76,7 @@
     if (savedKeepScreenOn !== null) {
         keepScreenOn = JSON.parse(savedKeepScreenOn);
     } else {
-      keepScreenOn = true;
+      keepScreenOn = isMobileDevice();
     }    
   });
   
