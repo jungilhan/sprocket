@@ -29,7 +29,7 @@
   let timerSize: number;
 
   // Dynamic size based on window size
-  $: timerSize = window.innerWidth < 640 ? 240 : 380; // Example: 240px for mobile, 340px for desktop
+  $: timerSize = window.innerWidth < 640 ? 240 : 380;
 
   $: adjustedSteps = steps.map((step) => {
     if (step.name === 'Developer') {
@@ -38,7 +38,7 @@
         multiplier *= Math.pow(1.02, rollNumber - 1);
       }
       if (solutionVolume === '500') {
-        multiplier *= Math.pow(1.04, rollNumber-1); // 500ml일 경우 4% 추가
+        multiplier *= Math.pow(1.04, rollNumber-1); // Add 4% for 500ml
       }
       return {
         ...step,
