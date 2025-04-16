@@ -4,7 +4,7 @@
   import SettingsPanel from './lib/SettingsPanel.svelte';
   import { clickOutside } from './lib/clickOutside';
   import { isMobileDevice } from './lib/types';
-  import { Settings, X } from 'lucide-svelte';
+  import { Settings, X, Github, Instagram } from 'lucide-svelte';
   import NoSleep from 'nosleep.js';
   import { onMount } from 'svelte';
 
@@ -184,10 +184,26 @@
     </div>    
   {/if}
   
-  <div class="flex justify-end mb-4" style="display: {showSettings ? 'none' : ''};">
-    <GlassButton
+  <div class="flex justify-end gap-2 mb-4" style="display: {showSettings ? 'none' : ''};">
+    <a href="https://www.instagram.com/unwind.film/" target="_blank">
+      <GlassButton
+        class="w-10 h-10 p-0 flex items-center justify-center opacity-80"
+      >
+        <Instagram class="w-5 h-5 text-white" />
+      </GlassButton>
+    </a>
+
+    <a href="https://github.com/jungilhan/sprocket" target="_blank">
+      <GlassButton
+        class="w-10 h-10 p-0 flex items-center justify-center opacity-80"
+      >
+        <Github class="w-5 h-5 text-white" />
+      </GlassButton>
+    </a>
+
+      <GlassButton
       on:click={() => (showSettings = true)}
-      class="w-10 h-10 p-0 flex items-center justify-center"
+      class="w-10 h-10 p-0 flex items-center justify-center opacity-80"
     >
       <Settings class="w-5 h-5 text-white" />
     </GlassButton>
